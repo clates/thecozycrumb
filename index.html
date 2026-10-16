@@ -3,131 +3,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Cozy Crumb · Home Bakery</title>
-  <meta name="description" content="The Cozy Crumb is a small home bakery making fresh breads, cookies, and custom treats to order.">
+  <title>The Cozy Crumb · Handcrafted in Herndon</title>
+  <meta name="description" content="Small-batch, artisan bread and decadent treats, baked fresh to order in Herndon, VA.">
   <meta property="og:title" content="The Cozy Crumb">
-  <meta property="og:description" content="Fresh-baked goodness from a home kitchen. Order breads, cookies, and custom treats.">
+  <meta property="og:description" content="Handcrafted in Herndon. Baked for your table.">
   <meta property="og:url" content="https://thecozycrumb.ashleylates.com/">
+  <meta property="og:image" content="https://thecozycrumb.ashleylates.com/images/breads.jpg">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="nav">
-    <a class="brand" href="#top">
-      <img src="favicon.svg" alt="" width="32" height="32">
-      The Cozy Crumb
-    </a>
-    <nav>
-      <a href="#menu">Menu</a>
-      <a href="#order">Order</a>
-      <a href="#about">About</a>
-    </nav>
+  <header class="banner">
+    <h1>The Cozy Crumb</h1>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-inner">
-        <p class="eyebrow">Home bakery · Baked to order</p>
-        <h1>Warm from the oven,<br>made with love.</h1>
-        <p class="lede">Small-batch breads, cookies, and sweet treats baked fresh in a home kitchen, for your table, your party, or just because.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#order">Place an order</a>
-          <a class="btn btn-ghost" href="#menu">See the menu</a>
+  <main>
+    <section class="intro">
+      <h2>Hi, it's nice to meet you!</h2>
+      <h3>Handcrafted in Herndon. Baked for Your Table.</h3>
+      <p>Welcome to <strong>The Cozy Crumb</strong>. I specialize in small-batch, artisan bread and decadent treats, baked fresh to order.</p>
+    </section>
+
+    <section class="offerings">
+      <figure>
+        <img src="images/breads.jpg" alt="A rustic scored loaf of artisan bread on a striped wooden cutting board" width="900" height="1195">
+        <figcaption>Breads</figcaption>
+      </figure>
+      <figure>
+        <img src="images/cookies.jpg" alt="Chocolate chip cookies cooling on a wire rack" width="900" height="1195">
+        <figcaption>Cookies</figcaption>
+      </figure>
+      <figure>
+        <img src="images/sweet-treats.jpg" alt="Frosted cinnamon rolls in a round tin" width="900" height="1195">
+        <figcaption>Sweet Treats</figcaption>
+      </figure>
+    </section>
+
+    <section class="how">
+      <h2>How It Works: From Oven to Table</h2>
+      <div class="how-grid">
+        <div class="how-item">
+          <img src="images/lead-time.png" alt="" width="192" height="200">
+          <h3>The Lead Time</h3>
+          <p>I require a 1–2 day lead time after your order is submitted, as everything is made completely fresh for you.</p>
         </div>
-      </div>
-    </section>
-
-    <section id="menu" class="section">
-      <h2>The Menu</h2>
-      <p class="section-sub">Everything is baked fresh to order. Menu changes with the seasons.</p>
-
-      <div class="menu-grid">
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🍞</div>
-          <h3>Breads</h3>
-          <ul class="items">
-            <li><span>Classic Sourdough Loaf</span><span class="price">$10</span></li>
-            <li><span>Honey Oat Sandwich Bread</span><span class="price">$8</span></li>
-            <li><span>Cinnamon Swirl Loaf</span><span class="price">$12</span></li>
-            <li><span>Focaccia (half sheet)</span><span class="price">$14</span></li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🍪</div>
-          <h3>Cookies <small>by the dozen</small></h3>
-          <ul class="items">
-            <li><span>Brown Butter Chocolate Chip</span><span class="price">$18</span></li>
-            <li><span>Snickerdoodle</span><span class="price">$16</span></li>
-            <li><span>Oatmeal Cranberry</span><span class="price">$16</span></li>
-            <li><span>Decorated Sugar Cookies</span><span class="price">from $30</span></li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🧁</div>
-          <h3>Sweets</h3>
-          <ul class="items">
-            <li><span>Cinnamon Rolls (6)</span><span class="price">$20</span></li>
-            <li><span>Cupcakes (dozen)</span><span class="price">$30</span></li>
-            <li><span>Banana Bread</span><span class="price">$10</span></li>
-            <li><span>Seasonal Pie</span><span class="price">$25</span></li>
-          </ul>
-        </article>
-
-        <article class="card card-accent">
-          <div class="card-icon" aria-hidden="true">🎂</div>
-          <h3>Custom Orders</h3>
-          <p>Birthdays, showers, holidays, and everything in between. Tell me what you're dreaming of and we'll make it happen.</p>
-          <a class="text-link" href="#order">Request a custom order →</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="order" class="section section-alt">
-      <h2>How to Order</h2>
-      <ol class="steps">
-        <li>
-          <span class="step-num">1</span>
-          <h3>Reach out</h3>
-          <p>Send a message with what you'd like and when you need it. Please order at least 3 days ahead.</p>
-        </li>
-        <li>
-          <span class="step-num">2</span>
-          <h3>Confirm</h3>
-          <p>I'll confirm availability, pricing, and a pickup time that works for you.</p>
-        </li>
-        <li>
-          <span class="step-num">3</span>
-          <h3>Enjoy</h3>
-          <p>Pick up your goodies fresh from the oven. Payment at pickup: cash or Venmo.</p>
-        </li>
-      </ol>
-      <div class="order-cta">
-        <a class="btn btn-primary btn-lg" href="mailto:hello@ashleylates.com?subject=Cozy%20Crumb%20Order">Email to order</a>
-        <p class="fine">Made in a home kitchen that also processes wheat, dairy, eggs, and nuts.</p>
-      </div>
-    </section>
-
-    <section id="about" class="section about">
-      <div class="about-photo" aria-hidden="true">
-        <span>👩‍🍳</span>
-      </div>
-      <div>
-        <h2>Hi, I'm Ashley!</h2>
-        <p>The Cozy Crumb started the way most good things do: in my kitchen, with flour on the counter and something warm in the oven. What began as baking for family and friends has grown into a little home bakery.</p>
-        <p>I believe in simple, quality ingredients, recipes made from scratch, and the kind of treats that make a house smell like home. Thanks for stopping by. I can't wait to bake for you.</p>
+        <div class="how-item">
+          <img src="images/delivery.png" alt="" width="300" height="180">
+          <h3>Pickup &amp; Local Delivery</h3>
+          <p>I offer local doorstep delivery within a 10 mile radius and contactless porch pickup right here in Herndon every Friday, Saturday and Sunday.</p>
+        </div>
+        <div class="how-item">
+          <img src="images/packaging.png" alt="" width="300" height="300">
+          <h3>Cozy Packaging</h3>
+          <p>All of the artisan loaves and sweet treats are carefully packaged in bakery bags and boxes to lock in freshness and warmth.</p>
+        </div>
+        <div class="how-item">
+          <img src="images/payment.png" alt="" width="240" height="240">
+          <h3>Payment</h3>
+          <p>Once your order is confirmed in the baking schedule, I accept Venmo or cash as forms of payment.</p>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p class="brand-foot">The Cozy Crumb</p>
-    <p><a href="mailto:hello@ashleylates.com">hello@ashleylates.com</a></p>
-    <p class="fine">© <span id="year">2026</span> The Cozy Crumb</p>
+    <p>© <span id="year">2026</span> The Cozy Crumb · Herndon, VA</p>
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
