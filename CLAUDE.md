@@ -16,7 +16,7 @@ Visitor's browser
    │  https://thecozycrumb.ashleylates.com
    ▼
 DNS lookup ── ashleylates.com nameservers: ns-cloud-d{1..4}.googledomains.com
-   │          (old Google Domains, now managed in Squarespace Domains)
+   │          (Google Cloud DNS infrastructure, managed via Squarespace Domains)
    │          Record:  thecozycrumb  CNAME  clates.github.io.   (TTL 4h)
    ▼
 clates.github.io → GitHub Pages edge (Fastly CDN)
@@ -34,11 +34,16 @@ Key points:
   redirects to the custom domain.
 - **Hosting:** GitHub Pages, repo `clates/thecozycrumb` (public, required for free Pages),
   source = `main` branch, `/` folder. Every push to `main` redeploys in about a minute.
-- **DNS** lives with the registrar (Squarespace Domains, Google Domains' successor), not in this repo.
-  Only the `thecozycrumb` CNAME record matters for this site. The apex `ashleylates.com` is separate
-  and unaffected.
-- **HTTPS:** once the cert is issued, "Enforce HTTPS" should be on (repo Settings → Pages, or
-  `gh api -X PUT repos/clates/thecozycrumb/pages -F https_enforced=true`).
+- **DNS** is managed in Squarespace Domains (domains.squarespace.com → ashleylates.com → DNS), not in
+  this repo. The nameservers are Google's `ns-cloud-d*` servers, but Squarespace publishes to them, so
+  edit records in Squarespace, not in a Google Cloud console. Only the `thecozycrumb` CNAME record matters for this site.
+  The same zone also holds Proton Mail MX/TXT records for the apex; leave those alone.
+- **Squarespace gotcha:** the Name field is relative. Enter `thecozycrumb`, not
+  `thecozycrumb.ashleylates.com`, or you get `thecozycrumb.ashleylates.com.ashleylates.com`.
+- **HTTPS:** Let's Encrypt cert issued by GitHub (auto-renews). "Enforce HTTPS" is on, so
+  http:// gets a 301 redirect to https://. If the cert ever gets stuck (e.g. DNS was wrong when GitHub checked),
+  remove and re-add the custom domain in Settings → Pages. Doing this via the API makes GitHub commit
+  "Delete CNAME" / "Create CNAME" to `main`, so pull afterwards.
 - **Takeover protection (recommended):** verify `ashleylates.com` under GitHub account
   Settings → Pages → Verified domains (adds a TXT record). This stops other GitHub users from
   claiming `*.ashleylates.com` if this repo's Pages site is ever disabled while the CNAME still exists.
