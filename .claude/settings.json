@@ -21,7 +21,13 @@
       "Edit(index.html)",
       "Edit(style.css)",
       "Edit(images/**)",
-      "Write(images/**)"
+      "Write(images/**)",
+      "Edit(my-plan.md)",
+      "Write(my-plan.md)",
+      "Write(reminders/**)",
+      "Bash(open reminders/*)",
+      "Bash(xdg-open reminders/*)",
+      "Bash(start reminders/*)"
     ],
     "deny": [
       "Bash(git push --force*)",

@@ -1,0 +1,6 @@
+# Keep internal notes off the public website (GitHub Pages runs Jekyll on this repo).
+exclude:
+  - CLAUDE.md
+  - docs/
+  - my-plan.md
+  - reminders/
