@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git pull*)",
+      "Bash(git push)",
+      "Bash(git push origin main)",
+      "Bash(git revert*)",
+      "Bash(gh api repos/clates/thecozycrumb/pages*)",
+      "Bash(magick*)",
+      "Bash(sips*)",
+      "Bash(open index.html)",
+      "Bash(xdg-open index.html)",
+      "Bash(start index.html)",
+      "Bash(ls*)",
+      "Edit(index.html)",
+      "Edit(style.css)",
+      "Edit(images/**)",
+      "Write(images/**)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git rebase -i*)",
+      "Bash(git branch -D*)",
+      "Bash(git clean*)",
+      "Edit(CNAME)",
+      "Write(CNAME)"
+    ]
+  }
+}
