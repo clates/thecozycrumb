@@ -1,12 +1,14 @@
-/* Palette and fonts carried over from the original Google Sites design. */
+/* Palette and fonts match The Cozy Crumb guides and planners (cream, chocolate brown, cocoa, tan; Lora + Poppins). */
 :root {
-  --navy: #38428e;
-  --navy-deep: #0f164d;
-  --slate: #33364d;
-  --stone: #e1dfdb;
-  --mist: #c9cedf;
-  --text: rgba(0, 0, 0, 0.8);
-  --text-soft: rgba(0, 0, 0, 0.64);
+  --cream: #fbf4e8;
+  --paper: #fffdf8;
+  --brown: #5c3a21;
+  --cocoa: #8a5a3b;
+  --tan: #e9d3b4;
+  --rose: #d9a48f;
+  --ink: #3b2a1e;
+  --muted: #8c7563;
+  --line: #d8c2a3;
   --white: #fff;
 }
 
@@ -14,32 +16,54 @@
 
 body {
   margin: 0;
-  background: var(--white);
-  color: var(--text);
-  font-family: "Open Sans", Arial, sans-serif;
-  font-size: 1.05rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 1rem;
   line-height: 1.7;
 }
 
 h1, h2, h3 {
-  font-family: "Playfair Display", Georgia, serif;
-  line-height: 1.25;
+  font-family: "Lora", Georgia, serif;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--brown);
 }
 
 img { max-width: 100%; height: auto; display: block; }
 
-/* Banner */
+/* Banner: cream with soft tan "crumbs", like the planner cover */
 .banner {
-  background: linear-gradient(135deg, var(--navy-deep), var(--navy));
-  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
   text-align: center;
   padding: clamp(4rem, 12vw, 7rem) 1rem;
 }
+.banner::before,
+.banner::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: var(--tan);
+  opacity: 0.55;
+}
+.banner::before { width: 260px; height: 260px; right: -80px; top: -110px; }
+.banner::after  { width: 170px; height: 170px; left: -60px; bottom: -90px; }
 .banner h1 {
+  position: relative;
   margin: 0;
   font-size: clamp(2.6rem, 8vw, 4.5rem);
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  color: var(--brown);
+}
+.banner h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 2px;
+  margin: 1.25rem auto 0;
+  background: var(--rose);
 }
 
 /* Intro */
@@ -52,16 +76,16 @@ img { max-width: 100%; height: auto; display: block; }
 .intro h2 {
   margin: 0 0 0.5rem;
   font-size: clamp(2rem, 5vw, 2.8rem);
-  color: var(--navy-deep);
 }
 .intro h3 {
   margin: 0 0 1.5rem;
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-size: clamp(1.15rem, 3vw, 1.4rem);
   font-weight: 400;
   font-style: italic;
-  color: var(--navy);
+  color: var(--cocoa);
 }
-.intro p { margin: 0; color: var(--text-soft); font-size: 1.15rem; }
+.intro p { margin: 0; color: var(--muted); font-size: 1.08rem; }
+.intro strong { color: var(--brown); font-weight: 600; }
 
 /* Offerings */
 .offerings {
@@ -72,58 +96,93 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 auto;
   padding: 2rem 1rem clamp(3rem, 8vw, 5rem);
 }
-.offerings figure { margin: 0; text-align: center; }
+.offerings figure {
+  margin: 0;
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
 .offerings img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 6px;
 }
 .offerings figcaption {
-  margin-top: 1rem;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.6rem;
-  color: var(--navy-deep);
+  padding: 0.9rem 1rem 1rem;
+  border-top: 1px solid var(--line);
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.45rem;
+  color: var(--brown);
 }
 
 /* How it works */
 .how {
-  background: var(--stone);
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   padding: clamp(3rem, 8vw, 5rem) 1rem;
 }
 .how h2 {
   max-width: 1100px;
   margin: 0 auto 2.5rem;
   text-align: center;
-  font-size: clamp(1.8rem, 4.5vw, 2.5rem);
-  color: var(--navy-deep);
+  font-size: clamp(1.8rem, 4.5vw, 2.4rem);
 }
 .how-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.5rem;
-  max-width: 1100px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 960px;
   margin: 0 auto;
 }
 .how-item {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
   background: var(--white);
-  border-radius: 8px;
-  padding: 1.75rem 1.5rem;
-  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: left;
 }
-.how-item img {
-  height: 96px;
-  width: auto;
-  margin: 0 auto 1rem;
+.how-icon {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+}
+.how-icon img {
+  width: 38px;
+  height: 38px;
   object-fit: contain;
 }
-.how-item h3 { margin: 0 0 0.5rem; color: var(--navy); font-size: 1.3rem; }
-.how-item p { margin: 0; color: var(--text-soft); font-size: 0.98rem; }
+.how-step {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cocoa);
+  margin-bottom: 0.15rem;
+}
+.how-item h3 { margin: 0 0 0.4rem; font-size: 1.25rem; }
+.how-item p { margin: 0; color: var(--ink); font-size: 0.95rem; }
+
+@media (max-width: 700px) {
+  .how-grid { grid-template-columns: 1fr; }
+  .how-item { padding: 1.25rem; }
+}
 
 /* Footer */
 .footer {
-  background: var(--slate);
-  color: var(--mist);
+  background: var(--brown);
+  color: var(--tan);
   text-align: center;
   padding: 2rem 1rem;
   font-size: 0.9rem;
