@@ -27,7 +27,9 @@
       "Write(reminders/**)",
       "Bash(open reminders/*)",
       "Bash(xdg-open reminders/*)",
-      "Bash(start reminders/*)"
+      "Bash(start reminders/*)",
+      "Bash(explorer.exe index.html)",
+      "Bash(explorer.exe reminders*)"
     ],
     "deny": [
       "Bash(git push --force*)",

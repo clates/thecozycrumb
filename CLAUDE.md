@@ -73,8 +73,9 @@ with someone), offer to put it on her calendar so it doesn't slip.
 - Create a calendar file in `reminders/` (also private, never published), for example
   `reminders/post-link-nextdoor.ics`. Use a standard iCalendar event with a clear title, the date
   and time she picks, a one-line description, and a 1-hour-before alert (`VALARM`). Then open it
-  (`open reminders/<file>.ics` on Mac, `start` on Windows, `xdg-open` on Linux), which adds it to her
-  calendar app with one click.
+  (`explorer.exe "reminders\\<file>.ics"` on Windows, `open` on Mac), which adds it to her calendar
+  app with one click. If no calendar app opens it, tell her where the file is so she can double-click it
+  or import it into Google/Outlook calendar.
 - Ask what day and time actually work for her. Don't guess.
 - Match the reminder to the item's date in `my-plan.md`.
 
@@ -110,7 +111,7 @@ Before she leaves, or whenever a task wraps up:
 1. **Understand** what she wants. Restate it in one sentence if it's at all ambiguous.
 2. **Make the edit.**
 3. **Show her a preview before publishing.** Open the page in her browser:
-   `open index.html` on Mac, `start index.html` on Windows, `xdg-open index.html` on Linux.
+   `explorer.exe index.html` on Windows (her computer), `open index.html` on Mac.
    Tell her what to look for: "Scroll down to the cookies. Does the new price look right?"
 4. **Ask for a clear go-ahead** to publish ("Want me to put this live on your website?").
    Never publish without a yes.
@@ -148,8 +149,11 @@ before publishing.
   for recently added images there and confirm which one with her.
 - Phone photos are huge. Always shrink them before adding:
   - With ImageMagick: `magick input.jpg -auto-orient -resize 900x -strip -quality 82 images/name.jpg`
-  - On a Mac without ImageMagick: `sips -s format jpeg -Z 1200 input.HEIC --out images/name.jpg`
-    (this also converts iPhone `.HEIC` photos)
+    (this also converts iPhone `.HEIC` photos).
+  - Ashley is on **Windows**. If `magick` isn't installed, ask her once if it's OK to install the free
+    photo tool ImageMagick (`winget install -e --id ImageMagick.ImageMagick`), then retry in a new
+    shell. If that's not possible, resize with PowerShell's `System.Drawing` (JPG/PNG only). For an
+    iPhone `.HEIC` photo, ask her to re-send it as a JPG.
 - Give each photo a simple descriptive filename and a short `alt` description of what's in it
   (for example "Frosted cinnamon rolls in a round tin").
 - If you replace a photo, remove the old file so the folder stays tidy.
@@ -196,9 +200,10 @@ checking with Chris.
   change. Try `git pull --rebase`. If there's a conflict you can't resolve cleanly, stop, leave her
   work safe, and tell her: "Chris changed something at the same time. I've saved your changes; ask
   him to take a quick look."
-- **Push fails with a login/permission error:** she may need to sign in to GitHub. Ask her to type
-  `! gh auth login` in the prompt, choose GitHub.com → HTTPS → "Login with a web browser," and
-  follow the steps. Then run `gh auth setup-git` and retry. If it still fails, she may not have
+- **Push fails with a login/permission error:** she needs to sign in to GitHub. On Windows, Git
+  normally pops up a GitHub sign-in window in her browser the first time she publishes. Tell her
+  to expect it and to click "Sign in with your browser." If no window appears, ask her to type
+  `! git push` in the prompt so the sign-in can happen interactively, then continue. If it still fails, she may not have
   access to the repository yet, so suggest she ask Chris.
 - **The site doesn't show her change:** wait a couple of minutes and refresh. Check the build status
   (see step 6 above). If the build failed, look at what changed, fix it, and republish.
