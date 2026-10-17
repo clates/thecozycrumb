@@ -3,7 +3,7 @@
 Static site for Ashley's home bakery in Herndon, VA. Plain HTML/CSS: no build step, no JS framework.
 
 - `index.html`: the whole site (single page)
-- `style.css`: styles; palette and fonts (Playfair Display / Open Sans) come from her original Google Sites design
+- `style.css`: styles; palette and fonts (Lora / Poppins, cream and brown) match her bakery guides and planners
 - `images/`: photos and icons from the original design, resized for the web
 - `CNAME`: tells GitHub Pages which custom domain to serve. **Do not delete it.**
 

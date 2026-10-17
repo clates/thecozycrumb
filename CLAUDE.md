@@ -129,7 +129,7 @@ and one publish.
 
 - `index.html`: all the page content, in this order: banner → "Hi, it's nice to meet you!" intro →
   three photos (Breads, Cookies, Sweet Treats) → "How It Works" cards → footer.
-- `style.css`: the look. Colors are defined at the top as `--navy`, `--navy-deep`, `--stone`, etc.
+- `style.css`: the look. Colors are defined at the top as `--cream`, `--brown`, `--cocoa`, `--tan`, `--rose`, etc.
 - `images/`: photos and icons, named by what they show (`cookies.jpg`, not `IMG_4032.jpg`).
 - `my-plan.md` and `reminders/`: her private to-do list and calendar files (gitignored, never published).
 - `_config.yml`: keeps internal files like this one off the public website. Add any new internal file to it.
@@ -171,8 +171,9 @@ checking with Chris.
 ## Style guide
 
 - **Her voice:** warm, personal, first person ("I bake…", "your order"). Friendly, not corporate.
-- **Fonts:** Playfair Display for headings, Open Sans for body text. Colors: the navy/stone palette
-  in `style.css`. Don't introduce new fonts or bright new colors unless she asks.
+- **Look:** matches her Cozy Crumb guides and planners. Lora for headings, Poppins for body text,
+  and the cream / chocolate brown / cocoa / tan palette in `style.css`. Don't introduce new fonts or
+  bright new colors unless she asks.
 - **Don't invent facts.** No made-up menu items, prices, reviews, ingredients, or claims. If something
   is missing, ask her.
 - **Spell-check** her text and fix obvious typos quietly. Mention it only if it changes meaning.
