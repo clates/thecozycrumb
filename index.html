@@ -164,7 +164,7 @@
           <div class="how-text">
             <span class="how-step">Step 4</span>
             <h3>Payment</h3>
-            <p>Once your order is confirmed in the baking schedule, I accept Venmo or cash as forms of payment.</p>
+            <p>Once your order is confirmed in the baking schedule, I'll email you a confirmation with your total and a Venmo link. Prefer cash? No problem, you can pay at pickup or delivery.</p>
           </div>
         </div>
       </div>
@@ -192,11 +192,16 @@
         <label><input type="radio" name="method" value="Porch pickup in Herndon" checked> Porch pickup in Herndon</label>
         <label><input type="radio" name="method" value="Local delivery"> Local delivery (within 10 miles)</label>
       </fieldset>
+      <fieldset>
+        <legend>How would you like to pay?</legend>
+        <label><input type="radio" name="pay" value="Venmo" checked> Venmo (I'll send a link with your confirmation)</label>
+        <label><input type="radio" name="pay" value="Cash at pickup/delivery"> Cash at pickup or delivery</label>
+      </fieldset>
       <label>Preferred day <input type="date" name="day" id="order-day"></label>
       <p class="form-hint">Pickup and delivery are Friday, Saturday and Sunday. Please allow 1–2 days for baking.</p>
       <label>Anything else I should know? <textarea name="notes" rows="2"></textarea></label>
       <button type="submit" class="send-order">Send my order</button>
-      <p class="form-hint">This opens your email with your order filled in. Nothing is charged online: I'll confirm your order, and you can pay with Venmo or cash.</p>
+      <p class="form-hint">This opens your email with your order filled in. Nothing is charged online. I'll email you to confirm your order.</p>
     </form>
     <div class="email-backup" id="order-backup" hidden>
       <p><strong>Email didn't open?</strong> No problem! Copy your order below and email it to <a href="mailto:orders@ashleylates.com">orders@ashleylates.com</a>.</p>

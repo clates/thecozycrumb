@@ -134,6 +134,7 @@
       'Name: ' + f.get('name'),
       'Contact: ' + f.get('contact'),
       'Pickup or delivery: ' + f.get('method'),
+      'Payment: ' + f.get('pay'),
       'Preferred day: ' + (f.get('day') || 'Flexible'),
       f.get('notes') ? 'Notes: ' + f.get('notes') : ''
     ].join('\n');
