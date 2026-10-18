@@ -52,6 +52,8 @@
       if (line) { line.qty += 1; }
       else { cart.push({ key: key, name: item.dataset.name, size: size ? size.value : '', price: price, qty: 1 }); }
       save(); render();
+      bumpCart();
+      showToast((size ? size.value + ' ' : '') + item.querySelector('h4').textContent + ' added to your cart!');
       btn.textContent = 'Added ✓';
       btn.classList.add('added');
       setTimeout(function () { btn.textContent = 'Add to cart'; btn.classList.remove('added'); }, 1400);
@@ -65,6 +67,23 @@
   var emptyEl = document.getElementById('cart-empty');
   var totalRow = document.getElementById('cart-total-row');
   var form = document.getElementById('order-form');
+
+  var cartButton = document.getElementById('cart-button');
+  var toast = document.getElementById('toast');
+  var toastTimer;
+  function bumpCart() {
+    cartButton.classList.remove('bump');
+    void cartButton.offsetWidth; // restart the animation
+    cartButton.classList.add('bump');
+  }
+  function showToast(msg) {
+    document.getElementById('toast-text').textContent = msg;
+    toast.hidden = false;
+    toast.classList.remove('show'); void toast.offsetWidth; toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.hidden = true; }, 3500);
+  }
+  document.getElementById('toast-view').addEventListener('click', function () { toast.hidden = true; openCart(); });
 
   function total() { return cart.reduce(function (t, l) { return t + l.price * l.qty; }, 0); }
 
@@ -100,7 +119,8 @@
     });
     totalEl.textContent = money(total());
     var empty = cart.length === 0;
-    emptyEl.hidden = !empty;
+    if (!empty) { document.getElementById('order-thanks').hidden = true; document.getElementById('order-backup').hidden = true; }
+    emptyEl.hidden = !empty || !document.getElementById('order-thanks').hidden;
     totalRow.hidden = empty;
     form.hidden = empty;
   }
@@ -112,6 +132,16 @@
   document.getElementById('cart-button').addEventListener('click', openCart);
   document.getElementById('cart-close').addEventListener('click', function () { dialog.close ? dialog.close() : dialog.removeAttribute('open'); });
   dialog.addEventListener('click', function (e) { if (e.target === dialog && dialog.close) dialog.close(); });
+
+  // Show the address box only for delivery
+  var addressField = document.getElementById('address-field');
+  form.querySelectorAll('input[name="method"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      var delivery = form.querySelector('input[name="method"]:checked').value === 'Local delivery';
+      addressField.hidden = !delivery;
+      addressField.querySelector('textarea').required = delivery;
+    });
+  });
 
   // Earliest day: 2 days from today (1–2 day lead time)
   var day = document.getElementById('order-day');
@@ -133,7 +163,7 @@
       '',
       'Name: ' + f.get('name'),
       'Contact: ' + f.get('contact'),
-      'Pickup or delivery: ' + f.get('method'),
+      'Pickup or delivery: ' + f.get('method') + (f.get('method') === 'Local delivery' ? '\nDelivery address: ' + f.get('address') : ''),
       'Payment: ' + f.get('pay'),
       'Preferred day: ' + (f.get('day') || 'Flexible'),
       f.get('notes') ? 'Notes: ' + f.get('notes') : ''
@@ -142,8 +172,30 @@
     document.getElementById('order-text').value = 'To: ' + ORDER_EMAIL + '\nSubject: ' + subject + '\n\n' + body.trim();
     var backup = document.getElementById('order-backup');
     backup.hidden = false;
-    setTimeout(function () { backup.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 300);
+    document.getElementById('order-thanks').hidden = false;
+    cart = []; save();
+    form.reset(); addressField.hidden = true;
+    render();
+    linesEl.innerHTML = '';
+    setTimeout(function () { dialog.scrollTop = 0; }, 50);
     window.location.href = 'mailto:' + ORDER_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+
+  // Once the thank-you has been seen, the next visit to the cart starts fresh
+  dialog.addEventListener('close', function () {
+    if (cart.length === 0) {
+      document.getElementById('order-thanks').hidden = true;
+      document.getElementById('order-backup').hidden = true;
+      render();
+    }
+  });
+
+  document.getElementById('back-to-menu').addEventListener('click', function () {
+    if (dialog.close) dialog.close(); else dialog.removeAttribute('open');
+    document.getElementById('order-thanks').hidden = true;
+    document.getElementById('order-backup').hidden = true;
+    render();
+    document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
   });
 
   // ---- Backup for when the email app doesn't open ----

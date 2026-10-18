@@ -31,6 +31,7 @@
     <section class="menu" id="menu" aria-labelledby="menu-title">
       <h2 id="menu-title">The Menu</h2>
       <p class="menu-lead">Tap a category to see what's baking, then add your favorites to your cart.</p>
+      <p class="allergen-note"><strong>Allergens:</strong> Made in a home kitchen that also handles wheat, dairy, eggs, and nuts.</p>
 
       <div class="categories">
         <button type="button" class="category" data-cat="breads" aria-expanded="false" aria-controls="cat-breads">
@@ -176,6 +177,11 @@
     <span aria-hidden="true">🛒</span> Cart <span class="cart-count" id="cart-count">0</span>
   </button>
 
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <span id="toast-text"></span>
+    <button type="button" id="toast-view">View cart</button>
+  </div>
+
   <dialog class="cart" id="cart" aria-labelledby="cart-title">
     <div class="cart-top">
       <h2 id="cart-title">Your Order</h2>
@@ -192,6 +198,7 @@
         <label><input type="radio" name="method" value="Porch pickup in Herndon" checked> Porch pickup in Herndon</label>
         <label><input type="radio" name="method" value="Local delivery"> Local delivery (within 10 miles)</label>
       </fieldset>
+      <label id="address-field" hidden>Delivery address <textarea name="address" rows="2" autocomplete="street-address" placeholder="Street, city and zip"></textarea></label>
       <fieldset>
         <legend>How would you like to pay?</legend>
         <label><input type="radio" name="pay" value="Venmo" checked> Venmo (I'll send a link with your confirmation)</label>
@@ -199,10 +206,17 @@
       </fieldset>
       <label>Preferred day <input type="date" name="day" id="order-day"></label>
       <p class="form-hint">Please allow 1–2 days for baking.</p>
-      <label>Anything else I should know? <textarea name="notes" rows="2"></textarea></label>
+      <label>Anything else I should know? <textarea name="notes" rows="2" placeholder="Allergies, special requests, gift notes..."></textarea></label>
+      <p class="form-hint"><strong>Allergens:</strong> Made in a home kitchen that also handles wheat, dairy, eggs, and nuts.</p>
       <button type="submit" class="send-order">Send my order</button>
       <p class="form-hint">This opens your email with your order filled in. Nothing is charged online. I'll email you to confirm your order.</p>
     </form>
+    <div class="thanks" id="order-thanks" hidden>
+      <div class="thanks-icon" aria-hidden="true">🍪</div>
+      <h3>Thank you for your order!</h3>
+      <p>Your email should have opened with your order filled in. <strong>Just press Send</strong>, and I'll email you back to confirm your order and baking day.</p>
+      <button type="button" class="back-to-menu" id="back-to-menu">Back to the menu</button>
+    </div>
     <div class="email-backup" id="order-backup" hidden>
       <p><strong>Email didn't open?</strong> No problem! Copy your order below and email it to <a href="mailto:orders@ashleylates.com">orders@ashleylates.com</a>.</p>
       <textarea id="order-text" rows="8" readonly aria-label="Your order, ready to copy"></textarea>
