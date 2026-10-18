@@ -25,21 +25,111 @@
       <h2>Hi, it's nice to meet you!</h2>
       <h3>Handcrafted in Herndon. Baked for Your Table.</h3>
       <p>Welcome to <strong>The Cozy Crumb</strong>. I specialize in small-batch, artisan bread and decadent treats, baked fresh to order.</p>
+      <a class="order-now" href="#menu">Order now</a>
     </section>
 
-    <section class="offerings">
-      <figure>
-        <img src="images/breads.jpg" alt="A rustic scored loaf of artisan bread on a striped wooden cutting board" width="900" height="1195">
-        <figcaption>Breads</figcaption>
-      </figure>
-      <figure>
-        <img src="images/cookies.jpg" alt="Chocolate chip cookies cooling on a wire rack" width="900" height="1195">
-        <figcaption>Cookies</figcaption>
-      </figure>
-      <figure>
-        <img src="images/sweet-treats.jpg" alt="Frosted cinnamon rolls in a round tin" width="900" height="1195">
-        <figcaption>Sweet Treats</figcaption>
-      </figure>
+    <section class="menu" id="menu" aria-labelledby="menu-title">
+      <h2 id="menu-title">The Menu</h2>
+      <p class="menu-lead">Tap a category to see what's baking, then add your favorites to your cart.</p>
+
+      <div class="categories">
+        <button type="button" class="category" data-cat="breads" aria-expanded="false" aria-controls="cat-breads">
+          <img src="images/breads.jpg" alt="A rustic scored loaf of artisan bread on a striped wooden cutting board" width="900" height="1195">
+          <span>Breads</span>
+        </button>
+        <button type="button" class="category" data-cat="cookies" aria-expanded="false" aria-controls="cat-cookies">
+          <img src="images/cookies.jpg" alt="Chocolate chip cookies cooling on a wire rack" width="900" height="1195">
+          <span>Cookies</span>
+        </button>
+        <button type="button" class="category" data-cat="sweet-treats" aria-expanded="false" aria-controls="cat-sweet-treats">
+          <img src="images/sweet-treats.jpg" alt="Frosted cinnamon rolls in a round tin" width="900" height="1195">
+          <span>Sweet Treats</span>
+        </button>
+      </div>
+
+      <div class="cat-panel" id="cat-breads" hidden>
+        <h3>Breads</h3>
+        <div class="items">
+          <article class="item" data-id="artisan-loaf" data-name="Round Artisan Loaf" data-price="10">
+            <div class="item-head"><h4>Round Artisan Loaf</h4><span class="price">$10</span></div>
+            <p>Golden crust with a soft, airy inside.</p>
+            <button type="button" class="add">Add to cart</button>
+          </article>
+          <article class="item" data-id="pumpkin-bread" data-name="Pumpkin Bread Loaf" data-price="12">
+            <div class="item-head"><h4>Pumpkin Bread Loaf</h4><span class="price">$12</span></div>
+            <p>With semi-sweet chocolate chips.</p>
+            <button type="button" class="add">Add to cart</button>
+          </article>
+          <article class="item" data-id="banana-bundt" data-name="Banana Bread Bundt" data-price="15">
+            <div class="item-head"><h4>Banana Bread Bundt</h4><span class="price">$15</span></div>
+            <p>Cinnamon crusted, moist and fit for a feast.</p>
+            <button type="button" class="add">Add to cart</button>
+          </article>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-cookies" hidden>
+        <h3>Cookies</h3>
+        <p class="cat-note">Every flavor comes by the half dozen ($12) or the dozen ($24).</p>
+        <div class="items">
+          <article class="item" data-id="brown-butter-cc" data-name="Brown Butter Chocolate Chip Cookies">
+            <div class="item-head"><h4>Brown Butter Chocolate Chip</h4><span class="price">$12</span></div>
+            <p>Nutty toasted butter, rich melted chocolate, flaky sea salt.</p>
+            <fieldset class="sizes">
+              <legend>Size</legend>
+              <label><input type="radio" name="size-brown-butter-cc" value="Half dozen" data-price="12" checked> Half dozen · $12</label>
+              <label><input type="radio" name="size-brown-butter-cc" value="Dozen" data-price="24"> Dozen · $24</label>
+            </fieldset>
+            <button type="button" class="add">Add to cart</button>
+          </article>
+          <article class="item" data-id="espresso-cc" data-name="Espresso Chocolate Chip Cookies">
+            <div class="item-head"><h4>Espresso Chocolate Chip</h4><span class="price">$12</span></div>
+            <p>Dark chocolate chips in an espresso-based dough.</p>
+            <fieldset class="sizes">
+              <legend>Size</legend>
+              <label><input type="radio" name="size-espresso-cc" value="Half dozen" data-price="12" checked> Half dozen · $12</label>
+              <label><input type="radio" name="size-espresso-cc" value="Dozen" data-price="24"> Dozen · $24</label>
+            </fieldset>
+            <button type="button" class="add">Add to cart</button>
+          </article>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-sweet-treats" hidden>
+        <h3>Sweet Treats</h3>
+        <div class="items">
+          <article class="item" data-id="cinnamon-rolls" data-name="Cinnamon Rolls (8)" data-price="15">
+            <div class="item-head"><h4>Cinnamon Rolls</h4><span class="price">$15</span></div>
+            <p>8 rolls with homemade cream cheese frosting.</p>
+            <button type="button" class="add">Add to cart</button>
+          </article>
+          <article class="item" data-id="brookie-bars" data-name="Brookie Bars (4)" data-price="12">
+            <div class="item-head"><h4>Brookie Bars</h4><span class="price">$12</span></div>
+            <p>4 dense, fudgy brownies layered with a brown butter cookie dough.</p>
+            <button type="button" class="add">Add to cart</button>
+          </article>
+          <article class="item" data-id="salted-caramel" data-name="Salted Caramel Sauce (6 oz)" data-price="7">
+            <div class="item-head"><h4>Salted Caramel Sauce</h4><span class="price">$7</span></div>
+            <p>A 6 oz jar filled to the rim and topped with sea salt.</p>
+            <button type="button" class="add">Add to cart</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gifting" aria-labelledby="gifting-title">
+      <span class="gifting-kicker">Gifting &amp; Bundles</span>
+      <h2 id="gifting-title">Corporate Gift Baskets</h2>
+      <p>A curated selection of fresh artisan bakes, cookies and gourmet sweets, packaged for gifting. Every basket is put together just for you.</p>
+      <p class="gifting-ask">Email me with your occasion, how many baskets you need and your date, and I'll send you the details.</p>
+      <a class="gifting-button" href="mailto:orders@ashleylates.com?subject=Gift%20basket%20inquiry&amp;body=Hi%20Ashley!%20I'm%20interested%20in%20gift%20baskets.%0A%0AOccasion%3A%20%0AHow%20many%20baskets%3A%20%0ADate%20needed%3A%20%0AMy%20name%20and%20phone%3A%20" id="gifting-email">Email me for details</a>
+      <div class="email-backup" id="gift-backup" hidden>
+        <p><strong>Email didn't open?</strong> No problem! Send your occasion, how many baskets you need and your date to <a href="mailto:orders@ashleylates.com">orders@ashleylates.com</a>.</p>
+        <div class="backup-actions">
+          <button type="button" class="copy-button" data-copy-text="orders@ashleylates.com">Copy email address</button>
+        </div>
+        <p class="copy-status" role="status"></p>
+      </div>
     </section>
 
     <section class="how">
@@ -81,10 +171,48 @@
     </section>
   </main>
 
+
+  <button type="button" class="cart-button" id="cart-button" aria-haspopup="dialog">
+    <span aria-hidden="true">🛒</span> Cart <span class="cart-count" id="cart-count">0</span>
+  </button>
+
+  <dialog class="cart" id="cart" aria-labelledby="cart-title">
+    <div class="cart-top">
+      <h2 id="cart-title">Your Order</h2>
+      <button type="button" class="cart-close" id="cart-close" aria-label="Close cart">×</button>
+    </div>
+    <p class="cart-empty" id="cart-empty">Your cart is empty. Tap a category on the menu to add something yummy!</p>
+    <ul class="cart-lines" id="cart-lines"></ul>
+    <p class="cart-total" id="cart-total-row">Total: <strong id="cart-total">$0</strong></p>
+    <form class="order-form" id="order-form">
+      <label>Your name <input name="name" autocomplete="name" required></label>
+      <label>Phone or email <input name="contact" autocomplete="email" required></label>
+      <fieldset>
+        <legend>Pickup or delivery?</legend>
+        <label><input type="radio" name="method" value="Porch pickup in Herndon" checked> Porch pickup in Herndon</label>
+        <label><input type="radio" name="method" value="Local delivery"> Local delivery (within 10 miles)</label>
+      </fieldset>
+      <label>Preferred day <input type="date" name="day" id="order-day"></label>
+      <p class="form-hint">Pickup and delivery are Friday, Saturday and Sunday. Please allow 1–2 days for baking.</p>
+      <label>Anything else I should know? <textarea name="notes" rows="2"></textarea></label>
+      <button type="submit" class="send-order">Send my order</button>
+      <p class="form-hint">This opens your email with your order filled in. Nothing is charged online: I'll confirm your order, and you can pay with Venmo or cash.</p>
+    </form>
+    <div class="email-backup" id="order-backup" hidden>
+      <p><strong>Email didn't open?</strong> No problem! Copy your order below and email it to <a href="mailto:orders@ashleylates.com">orders@ashleylates.com</a>.</p>
+      <textarea id="order-text" rows="8" readonly aria-label="Your order, ready to copy"></textarea>
+      <div class="backup-actions">
+        <button type="button" class="copy-button" data-copy-from="order-text">Copy my order</button>
+        <button type="button" class="copy-button secondary" data-copy-text="orders@ashleylates.com">Copy email address</button>
+      </div>
+      <p class="copy-status" role="status"></p>
+    </div>
+  </dialog>
+
   <footer class="footer">
     <p>© <span id="year">2026</span> The Cozy Crumb · Herndon, VA</p>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="script.js"></script>
 </body>
 </html>
