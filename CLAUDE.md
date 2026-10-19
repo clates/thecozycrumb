@@ -158,6 +158,11 @@ before publishing.
   (for example "Frosted cinnamon rolls in a round tin").
 - If you replace a photo, remove the old file so the folder stays tidy.
 
+### Blocking off days she can't bake
+The order calendar greys out the dates listed in `blocked-days.js` (format `'YYYY-MM-DD'`), plus anything
+inside the 1–2 day lead time. When she says she's away or unavailable, add the dates there (remove past ones
+while you're at it), preview, and publish as usual.
+
 ### Adding a new section (seasonal special, menu, FAQ, way to order...)
 Match the existing sections: same fonts, colors, and card style. Put it where it naturally fits and
 ask her if she'd prefer it somewhere else. Keep it simple.

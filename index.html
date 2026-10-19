@@ -204,7 +204,21 @@
         <label><input type="radio" name="pay" value="Venmo" checked> Venmo (I'll send a link with your confirmation)</label>
         <label><input type="radio" name="pay" value="Cash at pickup/delivery"> Cash at pickup or delivery</label>
       </fieldset>
-      <label>Preferred day <input type="date" name="day" id="order-day"></label>
+      <div class="day-picker">
+        <span class="field-label" id="day-label">Preferred day</span>
+        <div class="cal" aria-labelledby="day-label">
+          <div class="cal-head">
+            <button type="button" class="cal-nav" id="cal-prev" aria-label="Previous month">‹</button>
+            <span class="cal-title" id="cal-title" aria-live="polite"></span>
+            <button type="button" class="cal-nav" id="cal-next" aria-label="Next month">›</button>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
+        <input type="hidden" name="day" id="order-day">
+        <p class="cal-picked" id="cal-picked">Tap an open day to choose it.</p>
+        <p class="cal-key"><span class="key-open"></span> Open <span class="key-off"></span> Not available</p>
+        <p class="cal-error" id="cal-error" role="alert" hidden>Please choose a day for your order.</p>
+      </div>
       <p class="form-hint">Please allow 1–2 days for baking.</p>
       <label>Anything else I should know? <textarea name="notes" rows="2" placeholder="Allergies, special requests, gift notes..."></textarea></label>
       <p class="form-hint"><strong>Allergens:</strong> Made in a home kitchen that also handles wheat, dairy, eggs, and nuts.</p>
@@ -232,6 +246,7 @@
     <p>© <span id="year">2026</span> The Cozy Crumb · Herndon, VA</p>
   </footer>
 
+  <script src="blocked-days.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

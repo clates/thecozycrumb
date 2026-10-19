@@ -390,6 +390,61 @@ img { max-width: 100%; height: auto; display: block; }
   cursor: pointer;
 }
 
+/* Calendar day picker */
+.day-picker { display: grid; gap: 0.4rem; }
+.field-label { font-size: 0.9rem; font-weight: 500; }
+.cal {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+.cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+.cal-title { font-family: "Lora", Georgia, serif; font-weight: 600; color: var(--brown); font-size: 1.05rem; }
+.cal-nav {
+  width: 2rem; height: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--brown);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.cal-nav:disabled { opacity: 0.35; cursor: default; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; }
+.cal-dow { text-align: center; font-size: 0.72rem; font-weight: 600; color: var(--cocoa); padding-bottom: 0.15rem; }
+.cal-day {
+  aspect-ratio: 1 / 1;
+  min-height: 2.1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--cream);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 0;
+}
+.cal-day:hover:not(:disabled) { border-color: var(--cocoa); }
+.cal-day:focus-visible { outline: 3px solid var(--rose); outline-offset: 1px; }
+.cal-day.selected { background: var(--brown); border-color: var(--brown); color: var(--white); font-weight: 600; }
+.cal-day.past { background: transparent; border-color: transparent; color: #c9bcb0; cursor: default; }
+.cal-day.off {
+  background: repeating-linear-gradient(135deg, #f1ebe4, #f1ebe4 4px, #e6ddd3 4px, #e6ddd3 8px);
+  border-color: #e6ddd3;
+  color: #b3a497;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.cal-picked { margin: 0; font-size: 0.88rem; color: var(--muted); }
+.cal-picked.chosen { color: var(--brown); font-weight: 600; }
+.cal-key { margin: 0; display: flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; color: var(--muted); }
+.cal-key span { display: inline-block; width: 0.9rem; height: 0.9rem; border-radius: 3px; border: 1px solid var(--line); }
+.cal-key .key-open { background: var(--cream); }
+.cal-key .key-off { margin-left: 0.6rem; background: repeating-linear-gradient(135deg, #f1ebe4, #f1ebe4 3px, #e6ddd3 3px, #e6ddd3 6px); }
+.cal-error { margin: 0; font-size: 0.88rem; font-weight: 500; color: #a8452f; }
+
 [hidden] { display: none !important; }
 
 /* Gifting & bundles */

@@ -143,13 +143,85 @@
     });
   });
 
-  // Earliest day: 2 days from today (1–2 day lead time)
-  var day = document.getElementById('order-day');
-  var d = new Date(); d.setDate(d.getDate() + 2);
-  day.min = d.toISOString().slice(0, 10);
+  // ---- Calendar: pick a day; blocked days and the lead time are greyed out ----
+  var LEAD_DAYS = 2;            // earliest day = today + 2 (1–2 day lead time)
+  var MONTHS_AHEAD = 6;         // how far ahead customers can book
+  var blocked = window.BLOCKED_DAYS || [];
+  var dayInput = document.getElementById('order-day');
+  var calGrid = document.getElementById('cal-grid');
+  var calTitle = document.getElementById('cal-title');
+  var calPicked = document.getElementById('cal-picked');
+  var calError = document.getElementById('cal-error');
+  var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  function ymd(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function pretty(d) { return DAY_NAMES[d.getDay()] + ', ' + MONTH_NAMES[d.getMonth()] + ' ' + d.getDate(); }
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var earliest = new Date(today); earliest.setDate(earliest.getDate() + LEAD_DAYS);
+  var firstMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  var lastMonth = new Date(today.getFullYear(), today.getMonth() + MONTHS_AHEAD, 1);
+  var viewMonth = new Date(earliest.getFullYear(), earliest.getMonth(), 1);
+  var picked = null;
+
+  function drawCalendar() {
+    calTitle.textContent = MONTH_NAMES[viewMonth.getMonth()] + ' ' + viewMonth.getFullYear();
+    document.getElementById('cal-prev').disabled = viewMonth <= firstMonth;
+    document.getElementById('cal-next').disabled = viewMonth >= lastMonth;
+    calGrid.innerHTML = '';
+    ['S','M','T','W','T','F','S'].forEach(function (n) {
+      var h = document.createElement('span'); h.className = 'cal-dow'; h.textContent = n; h.setAttribute('aria-hidden', 'true');
+      calGrid.appendChild(h);
+    });
+    var start = viewMonth.getDay();
+    for (var i = 0; i < start; i++) { calGrid.appendChild(document.createElement('span')); }
+    var daysInMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 0).getDate();
+    for (var dnum = 1; dnum <= daysInMonth; dnum++) {
+      var date = new Date(viewMonth.getFullYear(), viewMonth.getMonth(), dnum);
+      var key = ymd(date);
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cal-day';
+      b.textContent = dnum;
+      var isBlocked = blocked.indexOf(key) !== -1;
+      var tooSoon = date < earliest;
+      if (isBlocked || tooSoon) {
+        b.disabled = true;
+        b.classList.add(isBlocked ? 'off' : 'past');
+        b.setAttribute('aria-label', pretty(date) + (isBlocked ? ', not available' : ', too soon'));
+        if (isBlocked) b.title = 'Not available';
+      } else {
+        b.setAttribute('aria-label', pretty(date));
+        if (picked === key) { b.classList.add('selected'); b.setAttribute('aria-pressed', 'true'); }
+        b.addEventListener('click', (function (k, dt) {
+          return function () {
+            picked = k; dayInput.value = pretty(dt);
+            calPicked.textContent = 'You picked: ' + pretty(dt);
+            calPicked.classList.add('chosen');
+            calError.hidden = true;
+            drawCalendar();
+          };
+        })(key, date));
+      }
+      calGrid.appendChild(b);
+    }
+  }
+  document.getElementById('cal-prev').addEventListener('click', function () { viewMonth.setMonth(viewMonth.getMonth() - 1); drawCalendar(); });
+  document.getElementById('cal-next').addEventListener('click', function () { viewMonth.setMonth(viewMonth.getMonth() + 1); drawCalendar(); });
+  function resetCalendar() {
+    picked = null; dayInput.value = '';
+    calPicked.textContent = 'Tap an open day to choose it.'; calPicked.classList.remove('chosen');
+    viewMonth = new Date(earliest.getFullYear(), earliest.getMonth(), 1);
+    drawCalendar();
+  }
+  drawCalendar();
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    if (!dayInput.value) {
+      calError.hidden = false;
+      calError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     var f = new FormData(form);
     var lines = cart.map(function (l) {
       return '• ' + l.qty + ' × ' + l.name + (l.size ? ' (' + l.size + ')' : '') + ' — ' + money(l.price * l.qty);
@@ -165,7 +237,7 @@
       'Contact: ' + f.get('contact'),
       'Pickup or delivery: ' + f.get('method') + (f.get('method') === 'Local delivery' ? '\nDelivery address: ' + f.get('address') : ''),
       'Payment: ' + f.get('pay'),
-      'Preferred day: ' + (f.get('day') || 'Flexible'),
+      'Preferred day: ' + f.get('day'),
       f.get('notes') ? 'Notes: ' + f.get('notes') : ''
     ].join('\n');
     var subject = 'Cozy Crumb order from ' + f.get('name');
@@ -174,7 +246,7 @@
     backup.hidden = false;
     document.getElementById('order-thanks').hidden = false;
     cart = []; save();
-    form.reset(); addressField.hidden = true;
+    form.reset(); addressField.hidden = true; resetCalendar();
     render();
     linesEl.innerHTML = '';
     setTimeout(function () { dialog.scrollTop = 0; }, 50);
